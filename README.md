@@ -31,8 +31,8 @@ file, it will not be overwritten.
 
 The arguments can be files in the cwd or the absolute path, i.e. under Linux 
 it is possible to make bash functions with different parameter files e.g.:
-	function defplot(){\n
-    		python /ABSPATH/quickplot.py $1 /ABSPATH/def.par
+	function defplot(){
+		python /ABSPATH/quickplot.py $1 /ABSPATH/def.par
 	}
 or alaternatively without arguments:   
 	function defplot(){
