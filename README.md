@@ -49,7 +49,4 @@ customized parameter files (def_plot.bat):
 	python C:\QuickPlot\quickplot.py %1 C:\QuickPlot\par_files\def.par
 	pause
 
-Distributed under the beer license: If you find this program useful - you can 
-buy me a beer (or two)...
-
 Mads Ry Joergensen, 2014, Aarhus University
