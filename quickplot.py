@@ -110,7 +110,7 @@ def create_qp_par():
     """
     qp_par = open('qp.par','w')
     text = """# Feel free to remove items to have a shorter file, but do NOT
-    # remove the section headers (with [])!
+# remove the section headers (with [])!
 # Remember to rename file if edited!
 [contours]
 #Linear contours (FOU, DEF)
