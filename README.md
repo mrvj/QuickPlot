@@ -7,7 +7,7 @@ The script needs libraries, 'xd_grd_lib.py' and 'atom_dictionay.py' that should
 be put in the python path or in the same folder as this file. The modules
 matplotlib and numpy are also required.
 The script has been tested with:
-OSX: python:2.7.3, numpy:1.8.0, matplotlib:1.3.1
+OSX: python:2.7.6, numpy:1.8.1, matplotlib:1.4.2
 
 The script can be run from the command line with no arguments, one argument or 
 two arguments:
@@ -49,4 +49,4 @@ customized parameter files (def_plot.bat):
 	python C:\QuickPlot\quickplot.py %1 C:\QuickPlot\par_files\def.par
 	pause
 
-Mads Ry Joergensen, 2014, Aarhus University
+Mads Ry Jørgensen, 2015, Aarhus University
