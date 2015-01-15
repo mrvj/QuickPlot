@@ -5,7 +5,7 @@ The script needs libraries, 'xd_grd_lib.py' and 'atom_dictionay.py' that should
 be put in the python path or in the same folder as this file. The modules
 matplotlib and numpy are also required.
 The script has been tested with:
-OSX: python:2.7.3, numpy:1.8.0, matplotlib:1.3.1
+OSX: python:2.7.6, numpy:1.8.1, matplotlib:1.4.2
 
 The script can be run from the command line with no arguments, one argument or 
 two arguments:
@@ -50,8 +50,9 @@ customized parameter files (def_plot.bat):
 Mads Joergensen, 2014, Aarhus University
 
 Version tracking: Describe changes and update version number below section. 
+Colors changed from tuples to single characters
 """
-version = 0.1
+version = 0.2
 
 ################################################################################
 import os
@@ -126,11 +127,11 @@ zero_cont = False
 
 [lines]
 #Colors and contour line styles:
-pos_color = (0, 0, 1)
+#b: blue, g: green, r: red, c: cyan, m: magenta, y: yellow, k: black, w: white
+pos_color = b
 pos_line = solid
-neg_color = (1, 0, 0)
+neg_color = r
 neg_line = dashed
-#FIXME: rgb tuple (0, 0, 0) does not work for one contour!!!
 zero_color = k 
 zero_line = dotted
 cont_line_width = 0.8
@@ -144,7 +145,7 @@ atom_cut = 0.2
 
 [bonds]
 show_bonds = True
-bond_color = (0, 0, 0)
+bond_color = k
 bond_thickness = 2
 #Bonds between symmetry generated atoms
 show_symm_bonds = True 
@@ -153,7 +154,7 @@ show_symm_bonds = True
 label_atoms = True
 # Atoms has to be plotted to show label 
 label_symm_atoms = False 
-label_color = (0, 0, 0)
+label_color = k
 label_size = 15
 label_x_offset = 0.1
 label_y_offset = 0.1
@@ -183,11 +184,10 @@ zero_cont = False
 
 #[lines]
 #Colors and contour line styles:
-pos_color = (0, 0, 1)
+pos_color = 'b'
 pos_line = 'solid'
-neg_color = (1, 0, 0)
+neg_color = 'r'
 neg_line = 'dashed'
-#FIXME: rgb tuple (0, 0, 0) does not work for one contour!!!
 zero_color = 'k' 
 zero_line = 'dotted'
 cont_line_width = 0.8
@@ -201,7 +201,7 @@ atom_cut = 0.2
 
 #[bonds]
 show_bonds = True
-bond_color = (0, 0, 0)
+bond_color = 'k'
 bond_thickness = 2
 #Bonds between symmetry generated atoms
 show_symm_bonds = True 
@@ -210,7 +210,7 @@ show_symm_bonds = True
 label_atoms = True
 # Atoms has to be plotted to show label 
 label_symm_atoms = False 
-label_color = (0, 0, 0)
+label_color = 'k'
 label_size = 15
 label_x_offset = 0.1
 label_y_offset = 0.1
@@ -284,11 +284,11 @@ if qp_par:
         zero_cont = config.getboolean('contours','zero_cont')
     #lines
     if config.has_option('lines','pos_color'):
-        pos_color = parse_float_tuble(config.get('lines','pos_color'))
+        pos_color = config.get('lines','pos_color')
     if config.has_option('lines','pos_line'):
         pos_line = config.get('lines','pos_line')
     if config.has_option('lines','neg_color'):
-        neg_color = parse_float_tuble(config.get('lines','neg_color'))
+        neg_color = config.get('lines','neg_color')
     if config.has_option('lines','neg_line'):
         neg_line = config.get('lines','neg_line')
     if config.has_option('lines','zero_color'):
@@ -308,7 +308,7 @@ if qp_par:
     if config.has_option('bonds','show_bonds'):
         show_bonds = config.getboolean('bonds','show_bonds')
     if config.has_option('bonds','bond_color'):
-        bond_color = parse_float_tuble(config.get('bonds','bond_color'))
+        bond_color = config.get('bonds','bond_color')
     if config.has_option('bonds','bond_thickness'):
         bond_thickness = config.getfloat('bonds','bond_thickness')
     if config.has_option('bonds','show_symm_bonds'):
@@ -319,7 +319,7 @@ if qp_par:
     if config.has_option('labels','label_symm_atoms'):
         label_symm_atoms = config.getboolean('labels','label_symm_atoms')
     if config.has_option('labels','label_color'):
-        label_color = parse_float_tuble(config.get('labels','label_color'))
+        label_color = config.get('labels','label_color')
     if config.has_option('labels','label_size'):
         label_size = config.getfloat('labels','label_size')
     if config.has_option('labels','label_x_offset'):
@@ -433,3 +433,4 @@ print '%s_%s%s%s.%s saved in %s/' % (func, atoms[0][0], atoms[1][0], \
       atoms[2][0], save_as, os.getcwd())
 plt.show()
 ################################################################################
+
