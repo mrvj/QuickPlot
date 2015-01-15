@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 QuickPlot: A program to plot 2D contour maps from XD2006 grd files.
 
@@ -47,7 +48,7 @@ customized parameter files (def_plot.bat):
 	python C:\QuickPlot\quickplot.py %1 C:\QuickPlot\par_files\def.par
 	pause
 
-Mads Joergensen, 2014, Aarhus University
+Mads Ry Jørgensen, 2015, Aarhus University
 
 Version tracking: Describe changes and update version number below section. 
 Colors changed from tuples to single characters
@@ -86,7 +87,7 @@ def print_version():
     print '\n'
     center_text("QuickPlot version " + str(version), width)
     center_text("A program to plot XD2006 grd files.", width)
-    center_text("Mads Joergensen, 2014, Aarhus University.\n", width)
+    center_text("Mads Ry Jørgensen, 2015, Aarhus University.\n", width)
     center_text(xd.get_version()+', '+atomdata.get_version()+'\n',width)
     print width*'#' + "\n"
     sys.stdout.flush()
@@ -433,4 +434,3 @@ print '%s_%s%s%s.%s saved in %s/' % (func, atoms[0][0], atoms[1][0], \
       atoms[2][0], save_as, os.getcwd())
 plt.show()
 ################################################################################
-
