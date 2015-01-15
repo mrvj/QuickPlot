@@ -1,15 +1,17 @@
+# -*- coding: utf-8 -*-
 """
 Library of atom colors and covalent radii used by XDPlotter (h3d, i3d, c2d): A 
 program to plot 2D contour maps, 3D height fields or 3D isosurfaces from XD2006 
 grd files.
 
-Mads Ry Joergensen, 2013, Aarhus University
+Mads Ry Jørgensen, 2015, Aarhus University
 
 Version tracking: Describe changes and update version number below section.
 0.2     Added change_atom_properties() that reads a file if pressent and updates
         the dictionaries accordingly
+0.3     Changing all colors from tuples to HEX codes
 """
-version = 0.2
+version = 0.3
 
 ################################################################################
 
@@ -40,9 +42,8 @@ def change_atom_properties(a_color, cov_r):
             entry = atom_changes.readline()
             while entry[0:9] != "end_color" and entry != '': # Read color definitions
                 symbol = entry.split('=')[0].strip(' ') # Extract atomic symbol
-                color = eval(entry.split('=')[1]) # Color as a tuple
-                if type(color) == tuple: # Add only if color is a tuple!
-                    new_color[symbol] = color
+                color = '#'+entry.split('=')[1].strip(' ')[0:6] # Color as a string
+                new_color[symbol] = color
                 entry = atom_changes.readline()
             if len(new_color) > 0:
                 print "The following atoms have non standard colors: ", new_color
@@ -69,8 +70,9 @@ def change_atom_properties(a_color, cov_r):
 #
 # Colors: Section start with 'start_color' and ends with 'end_color'. 
 # One line per entry specifying first the atomic symbol as a string: e.g. Fe
-# equal to (=) color as an rgb tuple, e.g. (1, 0, 0) for red:
-# Fe = (1, 0, 0)
+# equal to (=) color as an HEX code (e.g. ff0000 for red)
+# DO NOT USE '#' or ''s!
+# Fe = ff0000
 #
 # Radii: Section start with 'start_radius' and ends with 'end_radius'.
 # One line per entry specifying first the atomic symbol as a string: e.g. Fe
@@ -180,77 +182,78 @@ def get_atom_color(): # Dictionary to store atom color
     rgb tuple.
     """
     a_color = {}
-    a_color['H'] = (1,1,1)
-    a_color['He'] = (1, 0.1, 0.6)
-    a_color['Li'] = (0.6, 0.6, 0.6)
-    a_color['Be'] = (0.6, 0.6, 0.6)
-    a_color['B'] = (0.15, 0.55, 0.15)
-    a_color['C'] = (0.3, 0.3, 0.3)
-    a_color['N'] = (0, 0, 1)
-    a_color['O'] = (1, 0, 0)
-    a_color['F'] = (0, 1, 0)
-    a_color['Ne'] = (1, 0.1, 0.6)
-    a_color['Na'] = (0.6, 0.6, 0.6)
-    a_color['Mg'] = (0.6, 0.6, 0.6)
-    a_color['Al'] = (0.6, 0.6, 0.6)
-    a_color['Si'] = (0.45, 0.55, 0.6)
-    a_color['P'] = (0.5, 0, 0)
-    a_color['S'] = (1, 1, 0)
-    a_color['Cl'] = (0.8, 0.1, 0.55)
-    a_color['Ar'] = (1, 0.1, 0.6)
-    a_color['K'] = (0.6, 0.6, 0.6)
-    a_color['Ca'] = (0.6, 0.6, 0.6)
-    a_color['Sc'] = (0.6, 0.6, 0.6)
-    a_color['Ti'] = (0.6, 0.6, 0.6)
-    a_color['V'] = (0.6, 0.6, 0.6)
-    a_color['Cr'] = (0.6, 0.6, 0.6)
-    a_color['Mn'] = (0.55, 0.25, 0.05)
-    a_color['Fe'] = (1, 0.3, 0)
-    a_color['Co'] = (0.1, 0.1, 0.45)
-    a_color['Ni'] = (0, 0.5, 0)
-    a_color['Cu'] = (0, 1, 1)
-    a_color['Zn'] = (0.9, 0.9, 0.9)
-    a_color['Ga'] = (0.6, 0.6, 0.6)
-    a_color['Ge'] = (0.6, 0.6, 0.6)
-    a_color['As'] = (0.6, 0.6, 0.6)
-    a_color['Se'] = (0.6, 0.6, 0.6)
-    a_color['Br'] = (0.55, 0, 0)
-    a_color['Kr'] = (1, 0.1, 0.6)
-    a_color['Rb'] = (0.6, 0.6, 0.6)
-    a_color['Sr'] = (0.6, 0.6, 0.6)
-    a_color['Y'] = (0.6, 0.6, 0.6)
-    a_color['Zr'] = (0.6, 0.6, 0.6)
-    a_color['Nb'] = (0.6, 0.6, 0.6)
-    a_color['Mo'] = (0.6, 0.6, 0.6)
-    a_color['Tc'] = (0.6, 0.6, 0.6)
-    a_color['Ru'] = (0.6, 0.6, 0.6)
-    a_color['Rh'] = (0.6, 0.6, 0.6)
-    a_color['Pd'] = (0.6, 0.6, 0.6)
-    a_color['Ag'] = (0.6, 0.6, 0.6)
-    a_color['Cd'] = (0.6, 0.6, 0.6)
-    a_color['In'] = (0.6, 0.6, 0.6)
-    a_color['Sn'] = (0.6, 0.6, 0.6)
-    a_color['Sb'] = (0.6, 0.6, 0.6)
-    a_color['Te'] = (0.6, 0.6, 0.6)
-    a_color['I'] = (0.5, 0, 0.5)
-    a_color['Xe'] = (1, 0.1, 0.6)
-    a_color['Cs'] = (0.6, 0.6, 0.6)
-    a_color['Ba'] = (0.6, 0.6, 0.6)
-    a_color['La'] = (0.6, 0.6, 0.6)
-    a_color['Lu'] = (0.6, 0.6, 0.6)
-    a_color['Hf'] = (0.6, 0.6, 0.6)
-    a_color['Ta'] = (0.6, 0.6, 0.6)
-    a_color['W'] = (0.6, 0.6, 0.6)
-    a_color['Re'] = (0.6, 0.6, 0.6)
-    a_color['Os'] = (0.6, 0.6, 0.6)
-    a_color['Ir'] = (0.6, 0.6, 0.6)
-    a_color['Pt'] = (0.6, 0.6, 0.6)
-    a_color['Au'] = (1, 0.85, 0)
-    a_color['Hg'] = (0.6, 0.6, 0.6)
-    a_color['Tl'] = (0.6, 0.6, 0.6)
-    a_color['Pb'] = (0.6, 0.6, 0.6)
-    a_color['Bi'] = (0.6, 0.6, 0.6)
-    a_color['Rn'] = (0.6, 0.6, 0.6)
+    a_color['H'] = '#ffffff'
+    a_color['He'] = '#ff1a99'
+    a_color['Li'] = '#999999'
+    a_color['Be'] = '#999999'
+    a_color['B'] = '#268c26'
+    a_color['C'] = '#4c4c4c'
+    a_color['N'] = '#0000ff'
+    a_color['O'] = '#ff0000'
+    a_color['F'] = '#00ff00'
+    a_color['Ne'] = '#ff1a99'
+    a_color['Na'] = '#999999'
+    a_color['Mg'] = '#999999'
+    a_color['Al'] = '#999999'        
+    a_color['Si'] = '#738c99'    
+    a_color['P'] = '#800000'
+    a_color['S'] = '#ffff00' 
+    a_color['Cl'] = '#cc1a8c'
+    a_color['Ar'] = '#ff1a99'   
+    a_color['K'] = '#999999'      
+    a_color['Ca'] = '#999999'         
+    a_color['Sc'] = '#999999'
+    a_color['Ti'] = '#999999'
+    a_color['V'] = '#999999'
+    a_color['Cr'] = '#999999'
+    a_color['Mn'] = '#8c400d'                                  
+    a_color['Fe'] = '#ff4c00'
+    a_color['Co'] = '#1a1a73'
+    a_color['Ni'] = '#008000'           
+    a_color['Cu'] = '#00ffff'
+    a_color['Zn'] = '#e6e6e6'        
+    a_color['Ga'] = '#999999'
+    a_color['Ge'] = '#999999'
+    a_color['As'] = '#999999'                   
+    a_color['Se'] = '#999999'
+    a_color['Br'] = '#8c0000'                                                                
+    a_color['Kr'] = '#ff1a99'
+    a_color['Rb'] = '#999999'    
+    a_color['Sr'] = '#999999'
+    a_color['Y'] = '#999999'
+    a_color['Zr'] = '#999999'
+    a_color['Nb'] = '#999999'
+    a_color['Mo'] = '#999999'
+    a_color['Tc'] = '#999999'
+    a_color['Ru'] = '#999999'
+    a_color['Rh'] = '#999999'
+    a_color['Pd'] = '#999999'
+    a_color['Ag'] = '#999999'
+    a_color['Cd'] = '#999999'
+    a_color['In'] = '#999999'
+    a_color['Sn'] = '#999999'   
+    a_color['Sb'] = '#999999'
+    a_color['Te'] = '#999999'           
+    a_color['I'] = '#800080'
+    a_color['Xe'] = '#ff1a99'
+    a_color['Cs'] = '#999999'
+    a_color['Ba'] = '#999999'
+    a_color['La'] = '#999999'
+    a_color['Lu'] = '#999999'
+    a_color['Hf'] = '#999999'
+    a_color['Ta'] = '#999999'
+    a_color['W'] = '#999999'
+    a_color['Re'] = '#999999'
+    a_color['Os'] = '#999999'
+    a_color['Ir'] = '#999999'
+    a_color['Pt'] = '#999999'
+    a_color['Au'] = '#ffd900'
+    a_color['Hg'] = '#999999'
+    a_color['Tl'] = '#999999'
+    a_color['Pb'] = '#999999'
+    a_color['Bi'] = '#999999'
+    a_color['Rn'] = '#999999'
+
     return a_color
     
 ################################################################################
